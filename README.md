@@ -24,7 +24,7 @@ run `migrate.py` on  --> python manage.py migrate
 
 Add following to the dashboard navigation
 
-'
+`
 OSCAR_DASHBOARD_NAVIGATION.append({
     'label': _('Payments'),
     'icon': 'icon-globe',
@@ -43,4 +43,4 @@ OSCAR_DASHBOARD_NAVIGATION.append({
         },
     ]
 })
-'
+`
