@@ -11,7 +11,7 @@ Following are the configurations required for setting up django-oscar-payu
 Add `payu` to installed apps.
 
 
-Add the following to the `setting.py` file of your django-oscar setup
+Add the following to the `setting.py` file of your django-oscar setup:
 
 ```python
 PAYU_INFO = {
@@ -28,10 +28,10 @@ PAYU_INFO = {
 Run migration: use `python manage.py migrate`.
 
 
-Add following to the dashboard navigation
+Add following to the dashboard navigation:
 
 ```python
-OSCAR_DASHBOARD_NAVIGATION.append({
+OSCAR_DASHBOARD_NAVIGATION += [{
     'label': _('Payments'),
     'icon': 'icon-globe',
     'children': [
@@ -48,5 +48,17 @@ OSCAR_DASHBOARD_NAVIGATION.append({
             'url_name': 'cashondelivery-transaction-list',
         },
     ]
-})
+}]
 ```
+
+
+Add PayU urls to `url.py` file:
+
+```python
+from payu.nonseamless.dashboard.app import application as payu
+
+urlpatterns = [
+    url(r'^dashboard/payu/', include(payu.urls)),
+]
+```
+
