@@ -30,3 +30,4 @@ class NonSeamLessDashboardApplication(Application):
 
 
 application = NonSeamLessDashboardApplication()
+
