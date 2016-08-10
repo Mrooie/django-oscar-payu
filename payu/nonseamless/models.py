@@ -47,7 +47,7 @@ class NonSeamlessTransaction(models.Model):
     error_code = models.CharField(max_length=32, null=True, blank=True)
     error_message = models.CharField(max_length=128, null=True, blank=True)
     response = models.CharField(choices=RESPONSE, max_length=2, null=True, blank=True)
-    orderid  = models.CharField(max_length=32, null=True, blank=True)
+    orderid = models.CharField(max_length=32, null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
 
