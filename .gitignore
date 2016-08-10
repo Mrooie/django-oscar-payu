@@ -1,0 +1,38 @@
+# File types
+*.pyc
+*.swo
+*.swp
+*.swn
+*.log
+*.sql
+*.sqlite3
+*.egg*
+
+
+# OS files
+.DS_Store
+ehthumbs.db
+Icon?
+Thumbs.db
+*~
+
+# Configuration files
+.idea
+.tags
+.tags_sorted_by_file
+
+ecommerce/secret.txt
+ecommerce/settings/dev.py
+
+# Folders
+.sass-cache
+/docs/_build/
+/dist/
+
+assets/node_modules
+/node_modules
+/static
+/reports
+/uploads
+ecommerce/media/cache/
+ecommerce/media/images/
