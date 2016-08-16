@@ -1,0 +1,18 @@
+{% extends 'oscar/basket/partials/basket_content.html' %}
+{% load i18n %}
+
+{% block formactions %}
+    <div class="form-actions">
+        {% if anon_checkout_allowed or request.user.is_authenticated %}
+            {% if basket.total_excl_tax > 0 %}
+                <a href="{%  url 'payu-redirect' %}">
+                    <img src="https://static.payu.com/en/standard/partners/buttons/payu_account_button_01.png" style="margin-right:7px;">
+<!-- View here for PayU Button: http://developers.payulatam.com/es/solutions/payment_button -->
+                </a>
+            {% endif %}
+        {% endif %}
+        <a href="{% url 'checkout:index' %}" class="pull-right btn btn-large btn-primary">
+            {% trans "Proceed to checkout" %}
+        </a>
+    </div>
+{% endblock %}

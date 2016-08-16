@@ -1,0 +1,29 @@
+{% extends 'oscar/checkout/payment_details.html' %}
+{% load i18n %}
+
+{% block payment_details %}
+    <div class="well">
+        <div class="sub-header">
+            <h3>{% trans "PayU" %}</h3>
+        </div>
+        <p>{% trans "Click on the below icon to use PayU Checkout but where the shipping address and method is already chosen on the merchant site." %}</p>
+        <div style="overflow:auto"><a href="{% url 'payu-direct-payment' %}" title="{% trans "Pay with PayU" %}"><img src="http://cdn.slidesharecdn.com/profile-photo-PayU_Poland-48x48.jpg?cb=1372921244" align="left" style="margin-right:7px;"></a>&nbsp;</div>
+    </div>
+
+    <div class="well">
+        <div class="sub-header">
+            <h3>{% trans "PayU" %}</h3>
+        </div>
+        <form method="post" action="{% url 'checkout:preview' %}" class="form-stacked">
+            {% csrf_token %}
+            <h4>{% trans "Bankcard" %}</h4>
+            {% include "partials/form_fields.html" with form=bankcard_form %}
+            <h4>{% trans "Billing address" %}</h4>
+            {% include "partials/form_fields.html" with form=billing_address_form %}
+            <div class="form-actions">
+                <button type="submit" class="btn btn-large btn-primary">{% trans "Continue" %}</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
