@@ -99,7 +99,7 @@ class RedirectView(CheckoutSessionMixin, RedirectView):
         if basket.is_empty:
             raise EmptyBasketException()
 
-        # redirect to forms page where form would submit through webpage to payu
+        # redirect to forms page where form would submit through webpage to PayU
         # record the transaction
         shipping_addr = self.get_shipping_address(basket)
         order_total = self.build_submission()['order_total']
@@ -212,7 +212,7 @@ class CancelResponseView(RedirectView):
         return super(CancelResponseView, self).get(request, *args, **kwargs)
 
     def get_redirect_url(self, **kwargs):
-        messages.error(self.request, _("Payu transaction cancelled"))
+        messages.error(self.request, _("PayU transaction cancelled"))
         return reverse('basket:summary')
 
 
@@ -256,7 +256,7 @@ class SuccessResponseView(PaymentDetailsView):
         """
 
         error_msg = _(
-                "A problem occurred communicating with Payu "
+                "A problem occurred communicating with PayU "
                 "- please try again later"
         )
 

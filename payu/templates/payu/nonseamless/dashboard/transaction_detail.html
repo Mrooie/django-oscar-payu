@@ -3,7 +3,7 @@
 {% load i18n %}
 
 {% block title %}
-    {% trans "Payu transaction" %} {{ txn.pnref }} | {{ block.super }}
+    {% trans "PayU transaction" %} {{ txn.pnref }} | {{ block.super }}
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -15,7 +15,7 @@
             Payu
         </li>
         <li>
-            <a href="{% url 'payu-nonseamless-list' %}">{% trans "Payu transactions" %}</a>
+            <a href="{% url 'payu-nonseamless-list' %}">{% trans "PayU transactions" %}</a>
         </li>
         <li class="active">{{ txn.correlation_id }}</li>
     </ul>
