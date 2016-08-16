@@ -11,13 +11,19 @@ from django.shortcuts import get_object_or_404
 from django.utils import six
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic import RedirectView, FormView
+
 from oscar.core.exceptions import ModuleNotFoundError
 from oscar.core.loading import get_class, get_model
 
 from payu.exceptions import PayuError
-from payu.nonseamless.exceptions import EmptyBasketException, InvalidBasket, MissingShippingAddressException, \
-    MissingShippingMethodException
-from payu.nonseamless.facade import set_txn, generate_hash, verify_hash, PAYU_INFO
+from payu.nonseamless.exceptions import EmptyBasketException
+from payu.nonseamless.exceptions import InvalidBasket
+from payu.nonseamless.exceptions import MissingShippingAddressException
+from payu.nonseamless.exceptions import MissingShippingMethodException
+from payu.nonseamless.facade import generate_hash
+from payu.nonseamless.facade import PAYU_INFO
+from payu.nonseamless.facade import set_txn
+from payu.nonseamless.facade import verify_hash
 
 # Load views dynamically
 from payu.nonseamless.forms import PayUForm
@@ -118,16 +124,16 @@ class RedirectView(CheckoutSessionMixin, RedirectView):
         return getattr(settings, 'PAYU_INFO', PAYU_INFO)
 
 
-class PayuPreRquestView(FormView):
+class PayuPreRequestView(FormView):
     template_name = 'payu/nonseamless/payu_form.html'
     form_class = PayUForm
 
     def get(self, request, *args, **kwargs):
         self.txn = get_object_or_404(NonSeamlessTransaction, txnid=kwargs['txn_id'])
-        return super(PayuPreRquestView, self).get(request, *args, **kwargs)
+        return super(PayuPreRequestView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        conetxt = super(PayuPreRquestView, self).get_context_data(**kwargs)
+        conetxt = super(PayuPreRequestView, self).get_context_data(**kwargs)
         conetxt['action'] = settings.PAYU_INFO.get(self.request.session['currency']).get('payment_url')
 
         return conetxt
@@ -144,7 +150,7 @@ class PayuPreRquestView(FormView):
         surl = self.request.build_absolute_uri(reverse('payu-place-order', kwargs={'txn_id': txn.txnid}))
 
         # print self.txn_id
-        initial = super(PayuPreRquestView, self).get_initial()
+        initial = super(PayuPreRequestView, self).get_initial()
 
         initial['key'] = key
         initial['txnid'] = txn.txnid
@@ -233,8 +239,6 @@ class SuccessResponseView(PaymentDetailsView):
         # Re-apply any offers
         # Applicator().apply(request=self.request, basket=basket)
         Applicator().apply(basket, self.request.user, self.request)
-
-        print basket.offer_applications.offers
 
         return basket
 

@@ -4,7 +4,7 @@ from hashlib import sha512
 from uuid import uuid4
 
 from django.conf import settings
-from models import NonSeamlessTransaction
+from .models import NonSeamlessTransaction
 
 KEYS = ('key', 'txnid', 'amount', 'productinfo', 'firstname', 'email',
         'udf1', 'udf2', 'udf3', 'udf4', 'udf5', 'udf6', 'udf7', 'udf8',

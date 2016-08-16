@@ -1,6 +1,6 @@
 from django import forms
 
-from facade import generate_hash
+from .facade import generate_hash
 
 
 class PayUForm(forms.Form):
