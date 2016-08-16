@@ -3,7 +3,7 @@
 {% load i18n %}
 
 {% block title %}
-    {% trans "Payu transactions" %} | {{ block.super }}
+    {% trans "PayU transactions" %} | {{ block.super }}
 {% endblock %}
 
 {% block breadcrumbs %}
@@ -12,14 +12,14 @@
             <a href="{% url 'dashboard:index' %}">{% trans "Dashboard" %}</a>
         </li>
         <li>
-            Payu
+            PayU
         </li>
-        <li class="active">{% trans "Payu transactions" %}</li>
+        <li class="active">{% trans "PayU transactions" %}</li>
     </ul>
 {% endblock %}
 
 {% block headertext %}
-    {% trans "Payu transactions" %}
+    {% trans "PayU transactions" %}
 {% endblock %}
 
 {% block dashboard_content %}
@@ -31,9 +31,9 @@
                     <th>{% trans "Transaction ID" %}</th>
                     <th>{% trans "Status" %}</th>
                     <th>{% trans "Amount" %}</th>
-                    <th>{% trans "Email" %}</th>
-                    <th>{% trans "OrderID" %}</th>
-                    <th>{% trans "BasketID" %}</th>
+                    <th>{% trans "E-mail" %}</th>
+                    <th>{% trans "Order ID" %}</th>
+                    <th>{% trans "Basket ID" %}</th>
                     <th>{% trans "Date" %}</th>
                 </tr>
             </thead>
