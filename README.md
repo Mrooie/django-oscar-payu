@@ -58,6 +58,7 @@ Add PayU urls to `url.py` file:
 from payu.nonseamless.dashboard.app import application as payu
 
 urlpatterns = [
+    url(r'^checkout/payu/', include('payu.nonseamless.urls')),
     url(r'^dashboard/payu/', include(payu.urls)),
 ]
 ```
