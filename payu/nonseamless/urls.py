@@ -20,7 +20,12 @@ urlpatterns = [
     ),
 
     # payu url ready to redirect to payu
-    url(r'^redirect/', views.RedirectView.as_view(), name='payu-redirect'),
+    url(
+        r'^redirect/',
+        views.RedirectView.as_view(),
+        name='payu-redirect'
+    ),
+
     url(
         r'^prepayment/(?P<txn_id>\w+)',
         views.PayuPreRequestView.as_view(),

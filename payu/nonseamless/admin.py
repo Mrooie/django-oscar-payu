@@ -86,4 +86,10 @@ class ExpressTransactionAdmin(admin.ModelAdmin):
         'date_created'
     ]
 
+    list_filter = [
+        'city',
+        'country',
+        'state'
+    ]
+
 admin.site.register(models.NonSeamlessTransaction, ExpressTransactionAdmin)
